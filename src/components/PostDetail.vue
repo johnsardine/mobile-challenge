@@ -2,11 +2,12 @@
   <div class="">
     <div><router-link :to="routerHome">View detail</router-link></div>
     <h1>{{ title }}</h1>
-    <div>
+    <p>
       {{ body }}
+    </p>
+    <div>
+      This post has <strong>{{ numberOfComments }}</strong> comments
     </div>
-    {{ data }}
-    {{ user }}
   </div>
 </template>
 
@@ -26,6 +27,7 @@ export default {
       isLoading: false,
       data: undefined,
       user: undefined,
+      comments: undefined,
       routerHome: {
         name: 'PostsList',
       },
@@ -41,22 +43,44 @@ export default {
     body() {
       return (this.data) ? this.data.body : '';
     },
+    numberOfComments() {
+      return (this.comments) ? this.comments.length : 0;
+    },
   },
   methods: {
     async fetchData() {
       const id = parseInt(this.id, 10);
-      const { getPostById, getUserById } = this.$store.getters;
+      const { getPostById, getUserById, getCommentsForPostWithId } = this.$store.getters;
+      let userId;
+      let post;
+      let postId;
+
       this.isLoading = true;
 
-      const post = await getPostById(id);
-      this.$set(this, 'data', post);
-      const { userId } = post;
+      // TODO: Improve flow here
+      // TODO: Improve error handling. If post fails, what's the best way
+
+      try {
+        post = await getPostById(id);
+        postId = post.id;
+        userId = post.userId;
+        this.$set(this, 'data', post);
+      } catch (e) {
+        console.error('Could not get post with id %s', userId, e);
+      }
 
       try {
         const user = await getUserById(userId);
         this.$set(this, 'user', user);
       } catch (e) {
         console.error('Could not get author with id %s', userId, e);
+      }
+
+      try {
+        const comments = await getCommentsForPostWithId(postId);
+        this.$set(this, 'comments', comments);
+      } catch (e) {
+        console.error('Could not get comments for post with id %s', postId, e);
       }
 
       this.isLoading = false;
