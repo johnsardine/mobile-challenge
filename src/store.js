@@ -18,13 +18,16 @@ const store = new Vuex.Store({
       return posts;
     },
     getPostById() {
-      return id => getPosts().then(posts => posts.find(row => id === row.id));
+      return id => getPosts()
+      .then(posts => posts.find(row => id === row.id));
     },
     getUserById() {
-      return id => getUsers().then(users => users.find(row => id === row.id));
+      return id => getUsers()
+      .then(users => users.find(row => id === row.id));
     },
     getCommentsForPostWithId() {
-      return id => getComments().then(comments => comments.filter(row => id === row.postId));
+      return id => getComments()
+      .then(comments => comments.filter(row => id === row.postId));
     },
   },
   actions: {

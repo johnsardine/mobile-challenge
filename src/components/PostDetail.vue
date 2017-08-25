@@ -50,7 +50,11 @@ export default {
   methods: {
     async fetchData() {
       const id = parseInt(this.id, 10);
-      const { getPostById, getUserById, getCommentsForPostWithId } = this.$store.getters;
+      const {
+        getPostById,
+        getUserById,
+        getCommentsForPostWithId,
+      } = this.$store.getters;
       let userId;
       let post;
       let postId;
