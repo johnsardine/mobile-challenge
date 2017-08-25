@@ -36,7 +36,26 @@ class GetUsersPromise extends CachedPromiseFactory {
 const usersSource = new GetUsersPromise();
 const getUsers = usersSource.toPromise();
 
+/*
+ * Setup comments
+ */
+class GetCommentsPromise extends CachedPromiseFactory {
+  constructor() {
+    super();
+    this.setDefault([]);
+    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/comments';
+  }
+  fetchData() {
+    return fetch(this.dataSourceUrl)
+    .then(response => response.json());
+  }
+}
+
+const commentsSource = new GetCommentsPromise();
+const getComments = commentsSource.toPromise();
+
 export {
   getPosts,
   getUsers,
+  getComments,
 };

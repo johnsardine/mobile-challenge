@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getPosts, getUsers } from '@/ApiService';
+import { getPosts, getUsers, getComments } from '@/ApiService';
 
 Vue.use(Vuex);
 
@@ -22,6 +22,9 @@ const store = new Vuex.Store({
     },
     getUserById() {
       return id => getUsers().then(users => users.find(row => id === row.id));
+    },
+    getCommentsForPostWithId() {
+      return id => getComments().then(comments => comments.filter(row => id === row.postId));
     },
   },
   actions: {
