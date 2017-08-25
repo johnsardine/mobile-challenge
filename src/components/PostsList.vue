@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <ul class="PostsList">
-      <PostsListCell v-for="row in list" :key="row.id" :data="row" />
-    </ul>
-  </div>
+  <ul class="PostsList">
+    <PostsListCell v-for="row in list" :key="row.id" :data="row" />
+  </ul>
 </template>
 
 <script>
@@ -34,5 +32,11 @@ export default {
   padding: 0;
   list-style: none;
   margin: 0;
+}
+.PostsList > li {
+  border-top: 1px solid #ccc;
+}
+.PostsList > li:first-child {
+  border-top: 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <li class="PostsListCell">
     <div>{{ label }}</div>
-    <div><router-link :to="routerLinkObject">View detail</router-link></div>
+    <div><router-link :to="routerLinkObject">View detail &gt;</router-link></div>
   </li>
 </template>
 
@@ -32,5 +32,10 @@ export default {
 <style>
 .PostsListCell {
   padding: 10px;
+}
+.PostsListCell a {
+  text-decoration: none;
+  color: currentColor;
+  font-weight: bold;
 }
 </style>

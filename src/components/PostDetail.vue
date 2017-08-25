@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <div><router-link :to="routerHome">View detail</router-link></div>
+  <div class="PostDetail">
+    <div class="PostDetail__back"><router-link :to="routerHome">&lt; Back to list</router-link></div>
     <h1>{{ title }}</h1>
     <p>
       {{ body }}
@@ -101,4 +101,13 @@ export default {
 </script>
 
 <style>
+.PostDetail {
+  padding: 10px;
+}
+.PostDetail__back {}
+.PostDetail__back a {
+  text-decoration: none;
+  color: currentColor;
+  font-weight: bold;
+}
 </style>
