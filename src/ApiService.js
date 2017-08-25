@@ -19,13 +19,13 @@ const postsSource = new GetPostsPromise();
 const getPosts = postsSource.toPromise();
 
 /*
- * Setup posts
+ * Setup users
  */
-class GetAuthorsPromise extends CachedPromiseFactory {
+class GetUsersPromise extends CachedPromiseFactory {
   constructor() {
     super();
     this.setDefault([]);
-    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/authors';
+    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/users';
   }
   fetchData() {
     return fetch(this.dataSourceUrl)
@@ -33,10 +33,10 @@ class GetAuthorsPromise extends CachedPromiseFactory {
   }
 }
 
-const authorsSource = new GetAuthorsPromise();
-const getAuthors = authorsSource.toPromise();
+const usersSource = new GetUsersPromise();
+const getUsers = usersSource.toPromise();
 
 export {
   getPosts,
-  getAuthors,
+  getUsers,
 };

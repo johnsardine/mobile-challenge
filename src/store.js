@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getPosts, getAuthors } from '@/ApiService';
+import { getPosts, getUsers } from '@/ApiService';
 
 Vue.use(Vuex);
 
@@ -20,8 +20,8 @@ const store = new Vuex.Store({
     getPostById() {
       return id => getPosts().then(posts => posts.find(row => id === row.id));
     },
-    getAuthorById() {
-      return id => getAuthors().then(authors => authors.find(row => id === row.id));
+    getUserById() {
+      return id => getUsers().then(users => users.find(row => id === row.id));
     },
   },
   actions: {

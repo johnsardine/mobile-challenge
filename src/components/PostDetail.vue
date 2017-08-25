@@ -6,6 +6,7 @@
       {{ body }}
     </div>
     {{ data }}
+    {{ user }}
   </div>
 </template>
 
@@ -24,7 +25,7 @@ export default {
     return {
       isLoading: false,
       data: undefined,
-      author: undefined,
+      user: undefined,
       routerHome: {
         name: 'PostsList',
       },
@@ -44,10 +45,20 @@ export default {
   methods: {
     async fetchData() {
       const id = parseInt(this.id, 10);
-      const { getPostById } = this.$store.getters;
+      const { getPostById, getUserById } = this.$store.getters;
       this.isLoading = true;
-      const data = await getPostById(id);
-      this.$set(this, 'data', data);
+
+      const post = await getPostById(id);
+      this.$set(this, 'data', post);
+      const { userId } = post;
+
+      try {
+        const user = await getUserById(userId);
+        this.$set(this, 'user', user);
+      } catch (e) {
+        console.error('Could not get author with id %s', userId, e);
+      }
+
       this.isLoading = false;
     },
   },
