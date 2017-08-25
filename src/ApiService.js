@@ -7,7 +7,7 @@ class GetPostsPromise extends CachedPromiseFactory {
   constructor() {
     super();
     this.setDefault([]);
-    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/posts';
+    this.dataSourceUrl = 'https://jsonplaceholder.typicode.com/posts';
   }
   fetchData() {
     return fetch(this.dataSourceUrl)
@@ -25,7 +25,7 @@ class GetUsersPromise extends CachedPromiseFactory {
   constructor() {
     super();
     this.setDefault([]);
-    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/users';
+    this.dataSourceUrl = 'https://jsonplaceholder.typicode.com/users';
   }
   fetchData() {
     return fetch(this.dataSourceUrl)
@@ -43,7 +43,7 @@ class GetCommentsPromise extends CachedPromiseFactory {
   constructor() {
     super();
     this.setDefault([]);
-    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/comments';
+    this.dataSourceUrl = 'https://jsonplaceholder.typicode.com/comments';
   }
   fetchData() {
     return fetch(this.dataSourceUrl)
