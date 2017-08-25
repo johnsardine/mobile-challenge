@@ -1,0 +1,14 @@
+image: node:8.4.0
+pages:
+  stage: deploy
+  script:
+  - npm install
+  - npm run build
+  - mkdir .public
+  - cp -r dist/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
