@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { getPostList } from '@/ApiService';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     postList: [],
-    detail: undefined,
+    authors: [],
+    comments: [],
   },
   mutations: {
     setPostList(state, list) {
@@ -17,22 +19,18 @@ export default new Vuex.Store({
     postList({ postList }) {
       return postList;
     },
-    getPostById({ postList }) {
-      // TODO: If data does not exist, fetch from network before resolving
-      return id => new Promise((resolve) => {
-        if (postList.length) {
-          resolve(postList.find(row => id === row.id));
-        }
-      });
+    getPostById() {
+      return id => getPostList().then(postList => postList.find(row => id === row.id));
     },
   },
   actions: {
     fetchPostList({ commit }) {
-      fetch('http://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
+      getPostList()
       .then((list) => {
         commit('setPostList', list);
       });
     },
   },
 });
+
+export default store;
