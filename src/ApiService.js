@@ -1,6 +1,9 @@
 import CachedPromiseFactory from '@/utilities/CachedPromiseFactory';
 
-class GetPostListPromise extends CachedPromiseFactory {
+/*
+ * Setup posts
+ */
+class GetPostsPromise extends CachedPromiseFactory {
   constructor() {
     super();
     this.setDefault([]);
@@ -12,10 +15,28 @@ class GetPostListPromise extends CachedPromiseFactory {
   }
 }
 
-const postListSource = new GetPostListPromise();
-const getPostList = postListSource.toPromise();
+const postsSource = new GetPostsPromise();
+const getPosts = postsSource.toPromise();
+
+/*
+ * Setup posts
+ */
+class GetAuthorsPromise extends CachedPromiseFactory {
+  constructor() {
+    super();
+    this.setDefault([]);
+    this.dataSourceUrl = 'http://jsonplaceholder.typicode.com/authors';
+  }
+  fetchData() {
+    return fetch(this.dataSourceUrl)
+    .then(response => response.json());
+  }
+}
+
+const authorsSource = new GetAuthorsPromise();
+const getAuthors = authorsSource.toPromise();
 
 export {
-  postListSource,
-  getPostList,
+  getPosts,
+  getAuthors,
 };
