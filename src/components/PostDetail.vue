@@ -24,6 +24,7 @@ export default {
     return {
       isLoading: false,
       data: undefined,
+      author: undefined,
       routerHome: {
         name: 'PostsList',
       },
@@ -41,14 +42,13 @@ export default {
     },
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       const id = parseInt(this.id, 10);
       const { getPostById } = this.$store.getters;
       this.isLoading = true;
-      getPostById(id).then((data) => {
-        this.$set(this, 'data', data);
-        this.isLoading = false;
-      });
+      const data = await getPostById(id);
+      this.$set(this, 'data', data);
+      this.isLoading = false;
     },
   },
   created() {

@@ -1,33 +1,34 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getPostList } from '@/ApiService';
+import { getPosts, getAuthors } from '@/ApiService';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    postList: [],
-    authors: [],
-    comments: [],
+    posts: [],
   },
   mutations: {
-    setPostList(state, list) {
-      Vue.set(state, 'postList', list);
+    setPosts(state, list) {
+      Vue.set(state, 'posts', list);
     },
   },
   getters: {
-    postList({ postList }) {
-      return postList;
+    posts({ posts }) {
+      return posts;
     },
     getPostById() {
-      return id => getPostList().then(postList => postList.find(row => id === row.id));
+      return id => getPosts().then(posts => posts.find(row => id === row.id));
+    },
+    getAuthorById() {
+      return id => getAuthors().then(authors => authors.find(row => id === row.id));
     },
   },
   actions: {
     fetchPostList({ commit }) {
-      getPostList()
+      getPosts()
       .then((list) => {
-        commit('setPostList', list);
+        commit('setPosts', list);
       });
     },
   },

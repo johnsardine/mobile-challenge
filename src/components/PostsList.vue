@@ -22,7 +22,8 @@ export default {
   },
   computed: {
     list() {
-      return this.$store.getters.postList;
+      const { posts } = this.$store.getters;
+      return posts;
     },
   },
 };
