@@ -1,5 +1,5 @@
 <template>
-  <li class="PostsListCell">
+  <li class="TableViewCell">
     <div>{{ label }}</div>
     <div><router-link :to="routerLinkObject">View detail &gt;</router-link></div>
   </li>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'PostsListCell',
+  name: 'TableViewCell',
   props: {
     data: {
       type: Object,
@@ -29,13 +29,14 @@ export default {
 };
 </script>
 
-<style>
-.PostsListCell {
+<style lang="scss">
+.TableViewCell {
   padding: 10px;
-}
-.PostsListCell a {
-  text-decoration: none;
-  color: currentColor;
-  font-weight: bold;
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+    font-weight: bold;
+  }
 }
 </style>

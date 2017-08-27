@@ -1,18 +1,16 @@
 <template>
-  <ul class="PostsList">
-    <PostsListCell v-for="row in list" :key="row.id" :data="row" />
-  </ul>
+  <div class="">
+    <TableView :data="list" />
+  </div>
 </template>
 
 <script>
-import store from '@/store';
-import PostsListCell from '@/components/PostsListCell';
+import TableView from '@/components/TableView';
 
 export default {
   name: 'PostsList',
-  store,
   components: {
-    PostsListCell,
+    TableView,
   },
   data() {
     return {
@@ -27,16 +25,5 @@ export default {
 };
 </script>
 
-<style>
-.PostsList {
-  padding: 0;
-  list-style: none;
-  margin: 0;
-}
-.PostsList > li {
-  border-top: 1px solid #ccc;
-}
-.PostsList > li:first-child {
-  border-top: 0;
-}
+<style lang="css">
 </style>
