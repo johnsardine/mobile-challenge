@@ -56,6 +56,9 @@ const getComments = commentsSource.toPromise();
 
 export {
   getPosts,
+  postsSource,
   getUsers,
+  usersSource,
   getComments,
+  commentsSource,
 };
