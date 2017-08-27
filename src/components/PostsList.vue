@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="PostsList">
     <TableView :data="list" @didClickCell="didClickCell" />
   </div>
 </template>
