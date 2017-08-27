@@ -6,14 +6,26 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    networkRequestQueue: [],
     posts: [],
   },
   mutations: {
     setPosts(state, list) {
       Vue.set(state, 'posts', list);
     },
+    addNetworkRequestInProgress(state, requestIdentifier) {
+      state.networkRequestQueue.push(requestIdentifier);
+    },
+    removeNetworkRequestInProgress(state, requestIdentifier) {
+      const networkRequestQueue = state.networkRequestQueue;
+      const identifierIndex = networkRequestQueue.indexOf(requestIdentifier);
+      state.networkRequestQueue.splice(identifierIndex, 1);
+    },
   },
   getters: {
+    networkRequestInProgress({ networkRequestQueue }) {
+      return networkRequestQueue.length > 0;
+    },
     posts({ posts }) {
       return posts;
     },
@@ -32,9 +44,11 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchPostList({ commit }) {
+      commit('addNetworkRequestInProgress', 'getPosts');
       getPosts()
       .then((list) => {
         commit('setPosts', list);
+        commit('removeNetworkRequestInProgress', 'getPosts');
       });
     },
   },

@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+  <div :class="networkInProgressClassObject">Loading…</div>
   <transition :name="transitionName">
     <router-view></router-view>
   </transition>
@@ -14,9 +15,19 @@ export default {
       transitionName: undefined,
     };
   },
+  computed: {
+    networkRequestInProgress() {
+      return this.$store.getters.networkRequestInProgress;
+    },
+    networkInProgressClassObject() {
+      return {
+        NetworkStatus: true,
+        'NetworkStatus--in-progress': this.networkRequestInProgress,
+      };
+    },
+  },
   watch: {
     $route: function handleRouteTransition(to, from) {
-      console.log('Route', to, from);
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
@@ -36,6 +47,53 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+}
+
+@keyframes TaskSelectorLoader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.NetworkStatus {
+  $spacing: 10px;
+  $innerSpacing: 10px;
+  display: flex;
+  position: fixed;
+  top: $spacing;
+  left: $spacing;
+  right: $spacing;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  padding: $innerSpacing;
+  box-shadow: 0 0px 5px rgba(0,0,0,0.2);
+  transition: 0.3s ease-in-out opacity;
+  background-color: whitesmoke;
+
+  &::before {
+    $size: 22px;
+    content: '';
+    display: inline-block;
+    width: $size;
+    height: $size;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: currentColor;
+    border-right-color: transparent;
+    border-right-style: dashed;
+    animation: TaskSelectorLoader 1s infinite;
+    margin-right: 10px;
+  }
+
+  &--in-progress {
+    opacity: 1;
+  }
 }
 
 .slide-left,
