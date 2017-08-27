@@ -1,7 +1,7 @@
 <template>
-  <li class="TableViewCell">
+  <li class="TableViewCell" @click="didClickCell">
     <div>{{ label }}</div>
-    <div><router-link :to="routerLinkObject">View detail &gt;</router-link></div>
+    <div>View detail &gt;</div>
   </li>
 </template>
 
@@ -17,13 +17,10 @@ export default {
     label() {
       return this.data.title;
     },
-    routerLinkObject() {
-      return {
-        name: 'PostDetail',
-        params: {
-          id: this.data.id,
-        },
-      };
+  },
+  methods: {
+    didClickCell() {
+      this.$emit('didClickCell', this.data);
     },
   },
 };

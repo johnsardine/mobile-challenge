@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <TableView :data="list" />
+    <TableView :data="list" @didClickCell="didClickCell" />
   </div>
 </template>
 
@@ -20,6 +20,17 @@ export default {
     list() {
       const { posts } = this.$store.getters;
       return posts;
+    },
+  },
+  methods: {
+    didClickCell(data) {
+      const goToRouteParams = {
+        name: 'PostDetail',
+        params: {
+          id: data.id,
+        },
+      };
+      this.$router.push(goToRouteParams);
     },
   },
 };

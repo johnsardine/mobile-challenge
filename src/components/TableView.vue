@@ -1,6 +1,9 @@
 <template>
   <ul class="TableView">
-    <TableViewCell v-for="row in list" :key="row.id" :data="row" />
+    <TableViewCell v-for="row in list"
+    :key="row.id"
+    :data="row"
+    @didClickCell="didClickCell" />
   </ul>
 </template>
 
@@ -27,6 +30,12 @@ export default {
   computed: {
     list() {
       return this.data;
+    },
+  },
+  methods: {
+    didClickCell(data) {
+      // Push event up
+      this.$emit('didClickCell', data);
     },
   },
 };
