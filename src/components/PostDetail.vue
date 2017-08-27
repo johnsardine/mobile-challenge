@@ -1,7 +1,7 @@
 <template>
   <div class="PostDetail">
     <div class="PostDetail__back UiButtonBack"><router-link :to="routerHome" class="UiButton__label">Back to list</router-link></div>
-    <h1>{{ title }}</h1>
+    <h1 class="PostDetail__title">{{ title }}</h1>
     <p>
       {{ body }}
     </p>
@@ -110,6 +110,10 @@ export default {
       color: currentColor;
       font-weight: bold;
     }
+  }
+
+  &__title {
+    text-transform: capitalize;
   }
 }
 </style>
