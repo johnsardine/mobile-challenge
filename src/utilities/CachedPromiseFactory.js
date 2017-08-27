@@ -4,6 +4,8 @@ export default class CachedPromiseFactory {
     this.setComplete(false);
     this.setInProgress(false);
     this.resetWaitList();
+    this.doBeforeRequest();
+    this.doAfterRequest();
     this.defaultReturn = Promise.resolve();
   }
 
@@ -23,6 +25,17 @@ export default class CachedPromiseFactory {
    */
   setComplete(complete) {
     this.fetchComplete = complete;
+  }
+
+  /*
+   * Set function to run before request
+   * Useful to trigger loading state
+   */
+  doBeforeRequest(action) {
+    this.beforeRequest = action;
+  }
+  doAfterRequest(action) {
+    this.afterRequest = action;
   }
 
   /*
@@ -72,6 +85,9 @@ export default class CachedPromiseFactory {
         }
       } else {
         this.setInProgress(true);
+        if (typeof this.beforeRequest === 'function') {
+          this.beforeRequest();
+        }
         this.fetchData()
         .then((response) => {
           this.setComplete(true);
@@ -80,6 +96,9 @@ export default class CachedPromiseFactory {
           this.fulfill(this.data);
           this.resetWaitList();
           this.setInProgress(false);
+          if (typeof this.afterRequest === 'function') {
+            this.afterRequest();
+          }
         });
       }
     });
