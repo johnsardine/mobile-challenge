@@ -1,0 +1,40 @@
+$UiButtonLabelSpacing: 8px;
+%UiButtonArrow {
+  background-color: currentColor;
+  content: ' ';
+  display: inline-block;
+  height: 22px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 15px;
+}
+
+.UiButton {
+  &Back,
+  &Forward {
+    display: flex;
+  }
+
+  &Back {
+    &::before {
+      @extend %UiButtonArrow;
+      mask-image: url('~@/assets/accessory-button-left.svg');
+    }
+  }
+
+  &Back &__label {
+    margin-left: $UiButtonLabelSpacing;
+  }
+
+  &Forward {
+    &::after {
+      @extend %UiButtonArrow;
+      mask-image: url('~@/assets/accessory-button-right.svg');
+    }
+  }
+
+  &Forward &__label {
+    margin-right: $UiButtonLabelSpacing;
+  }
+}

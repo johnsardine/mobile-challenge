@@ -4,7 +4,7 @@
       <div class="TableViewCell__label">{{ label }}</div>
     </div>
     <div class="TableViewCell__accessories">
-      <div class="TableViewCell__button-disclosure"></div>
+      <div class="TableViewCell__button-disclosure UiButtonForward"><span class="UiButton__label">View Detail</span></div>
     </div>
   </li>
 </template>
@@ -49,17 +49,6 @@ export default {
   }
 
   &__button-disclosure {
-    width: 15px;
-    mask-image: url('~@/assets/accessory-button-right.svg');
-    mask-size: contain;
-    mask-position: center;
-    mask-repeat: no-repeat;
-    background-color: currentColor;
-
-    &::before {
-      content: ' ';
-      display: inline-block;
-    }
   }
 
   a {

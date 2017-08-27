@@ -1,6 +1,6 @@
 <template>
   <div class="PostDetail">
-    <div class="PostDetail__back"><router-link :to="routerHome">&lt; Back to list</router-link></div>
+    <div class="PostDetail__back UiButtonBack"><router-link :to="routerHome" class="UiButton__label">Back to list</router-link></div>
     <h1>{{ title }}</h1>
     <p>
       {{ body }}
@@ -100,14 +100,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .PostDetail {
   padding: 10px;
-}
-.PostDetail__back {}
-.PostDetail__back a {
-  text-decoration: none;
-  color: currentColor;
-  font-weight: bold;
+
+  &__back {
+    a {
+      text-decoration: none;
+      color: currentColor;
+      font-weight: bold;
+    }
+  }
 }
 </style>
