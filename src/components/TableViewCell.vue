@@ -46,6 +46,8 @@ export default {
 
   // Accessory
   &__accessories {
+    flex-shrink: 0;
+    margin-left: 10px;
   }
 
   &__button-disclosure {
