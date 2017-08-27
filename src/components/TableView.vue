@@ -8,12 +8,10 @@
 </template>
 
 <script>
-import store from '@/store';
 import TableViewCell from '@/components/TableViewCell';
 
 export default {
   name: 'TableView',
-  store,
   components: {
     TableViewCell,
   },
