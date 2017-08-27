@@ -43,7 +43,7 @@ body {
   &-enter,
   &-leave {
     &-active {
-      transition-duration: 0.5s;
+      transition-duration: 0.3s;
       transition-timing-function: ease-in-out;
       transition-property: opacity, transform;
     }
@@ -51,6 +51,10 @@ body {
   &-enter,
   &-leave-to {
     opacity: 0;
+  }
+  &-enter-to,
+  &-leave-to {
+    position: absolute;
   }
 }
 .slide-left {
@@ -62,7 +66,6 @@ body {
     transform: translateX(0%);
   }
   &-leave-to {
-    position: absolute;
     transform: translateX(-100%);
   }
 }
@@ -75,7 +78,6 @@ body {
     transform: translateX(0%);
   }
   &-leave-to {
-    position: absolute;
     transform: translateX(100%);
   }
 }
