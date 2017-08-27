@@ -1,12 +1,27 @@
 <template>
 <div id="app">
-  <router-view></router-view>
+  <transition :name="transitionName">
+    <router-view></router-view>
+  </transition>
 </div>
 </template>
 
 <script>
 export default {
   name: 'app',
+  data() {
+    return {
+      transitionName: undefined,
+    };
+  },
+  watch: {
+    $route: function handleRouteTransition(to, from) {
+      console.log('Route', to, from);
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+    },
+  },
 };
 </script>
 
@@ -21,5 +36,47 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+}
+
+.slide-left,
+.slide-right {
+  &-enter,
+  &-leave {
+    &-active {
+      transition-duration: 0.5s;
+      transition-timing-function: ease-in-out;
+      transition-property: opacity, transform;
+    }
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+.slide-left {
+  &-enter {
+    transform: translateX(100%);
+  }
+  &-enter-to,
+  &-leave {
+    transform: translateX(0%);
+  }
+  &-leave-to {
+    position: absolute;
+    transform: translateX(-100%);
+  }
+}
+.slide-right {
+  &-enter {
+    transform: translateX(-100%);
+  }
+  &-enter-to,
+  &-leave {
+    transform: translateX(0%);
+  }
+  &-leave-to {
+    position: absolute;
+    transform: translateX(100%);
+  }
 }
 </style>
