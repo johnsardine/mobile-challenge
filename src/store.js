@@ -1,6 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getPosts, getUsers, getComments } from '@/ApiService';
+import {
+  getPosts,
+  postsSource,
+  getUsers,
+  usersSource,
+  getComments,
+  commentsSource,
+} from '@/ApiService';
 
 Vue.use(Vuex);
 
@@ -44,7 +51,6 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchPostList({ commit }) {
-      commit('addNetworkRequestInProgress', 'getPosts');
       getPosts()
       .then((list) => {
         commit('setPosts', list);
@@ -52,6 +58,26 @@ const store = new Vuex.Store({
       });
     },
   },
+});
+
+// Notify app of networking operations
+postsSource.doBeforeRequest(() => {
+  store.commit('addNetworkRequestInProgress', 'getPosts');
+});
+postsSource.doAfterRequest(() => {
+  store.commit('removeNetworkRequestInProgress', 'getPosts');
+});
+usersSource.doBeforeRequest(() => {
+  store.commit('addNetworkRequestInProgress', 'getUsers');
+});
+usersSource.doAfterRequest(() => {
+  store.commit('removeNetworkRequestInProgress', 'getUsers');
+});
+commentsSource.doBeforeRequest(() => {
+  store.commit('addNetworkRequestInProgress', 'getComments');
+});
+commentsSource.doAfterRequest(() => {
+  store.commit('removeNetworkRequestInProgress', 'getComments');
 });
 
 export default store;
