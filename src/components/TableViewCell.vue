@@ -1,7 +1,11 @@
 <template>
   <li class="TableViewCell" @click="didClickCell($event)">
-    <div>{{ label }}</div>
-    <div>View detail &gt;</div>
+    <div class="TableViewCell__content">
+      <div class="TableViewCell__label">{{ label }}</div>
+    </div>
+    <div class="TableViewCell__accessories">
+      <div class="TableViewCell__button-disclosure"></div>
+    </div>
   </li>
 </template>
 
@@ -28,7 +32,21 @@ export default {
 
 <style lang="scss">
 .TableViewCell {
+  display: flex;
   padding: 10px;
+
+  // Content
+  &__content {
+    flex-grow: 1;
+  }
+  &__label {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  // Accessory
+  &__accessories {
+  }
 
   a {
     text-decoration: none;
