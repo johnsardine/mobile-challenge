@@ -1,6 +1,9 @@
 image: node:8.4.0
 pages:
   stage: deploy
+  environment:
+    name: production
+    url: https://johnsardine.gitlab.io/unbabel-mobile-challenge/
   script:
   - npm install
   - npm run build
