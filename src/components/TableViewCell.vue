@@ -1,5 +1,5 @@
 <template>
-  <li class="TableViewCell" @click="didClickCell">
+  <li class="TableViewCell" @click="didClickCell($event)">
     <div>{{ label }}</div>
     <div>View detail &gt;</div>
   </li>
@@ -19,8 +19,8 @@ export default {
     },
   },
   methods: {
-    didClickCell() {
-      this.$emit('didClickCell', this.data);
+    didClickCell($event) {
+      this.$emit('didClickCell', this.data, $event);
     },
   },
 };

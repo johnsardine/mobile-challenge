@@ -33,9 +33,9 @@ export default {
     },
   },
   methods: {
-    didClickCell(data) {
-      // Push event up
-      this.$emit('didClickCell', data);
+    didClickCell(data, $event) {
+      // Propagate event up
+      this.$emit('didClickCell', data, $event);
     },
   },
 };
