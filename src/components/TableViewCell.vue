@@ -48,6 +48,21 @@ export default {
   &__accessories {
   }
 
+  &__button-disclosure {
+    background-color: red;
+    width: 15px;
+    mask-image: url('~@/assets/accessory-button-right.svg');
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    background-color: currentColor;
+
+    &::before {
+      content: ' ';
+      display: inline-block;
+    }
+  }
+
   a {
     text-decoration: none;
     color: currentColor;
