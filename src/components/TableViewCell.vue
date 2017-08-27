@@ -49,7 +49,6 @@ export default {
   }
 
   &__button-disclosure {
-    background-color: red;
     width: 15px;
     mask-image: url('~@/assets/accessory-button-right.svg');
     mask-size: contain;
