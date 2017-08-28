@@ -38,13 +38,13 @@ export default {
       return `Beautiful id number ${this.id}`;
     },
     title() {
-      return (this.data) ? this.data.title : '';
+      return this.data ? this.data.title : '';
     },
     body() {
-      return (this.data) ? this.data.body : '';
+      return this.data ? this.data.body : '';
     },
     numberOfComments() {
-      return (this.comments) ? this.comments.length : 0;
+      return this.comments ? this.comments.length : 0;
     },
   },
   methods: {
