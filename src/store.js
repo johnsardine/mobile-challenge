@@ -54,7 +54,6 @@ const store = new Vuex.Store({
       getPosts()
       .then((list) => {
         commit('setPosts', list);
-        commit('removeNetworkRequestInProgress', 'getPosts');
       });
     },
   },
