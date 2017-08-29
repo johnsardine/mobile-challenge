@@ -33,6 +33,9 @@ export default {
       this.$router.push(goToRouteParams);
     },
   },
+  created() {
+    this.$store.dispatch('fetchPostList');
+  },
 };
 </script>
 
