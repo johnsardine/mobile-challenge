@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import {
   getPosts,
   postsSource,
@@ -12,6 +13,12 @@ import {
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  plugins: [
+    createPersistedState({
+      key: 'umc', // Unbabel Mobile Challenge
+      storage: window.localStorage,
+    }),
+  ],
   state: {
     networkRequestQueue: [],
     posts: [],
