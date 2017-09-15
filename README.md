@@ -1,6 +1,25 @@
-# unbabel-mobile-challenge
+> The Vue.js version of Unbabel Mobile challenge, done just for fun.
 
-> The Web version of Unbabel Mobile challenge
+## The challenge
+
+From a high level point of view the demo consists of a list of posts, where each post has its own detail.
+
+**Posts Screen**
+
+A post has a title and it's up to you how to display it. To retrieve the posts, you can use the following: [http://jsonplaceholder.typicode.com/posts](http://jsonplaceholder.typicode.com/posts)
+
+When a post is tapped, you should go to the detail screen.
+
+**Detail screen**
+
+A post detail screen, will have:
+
+- Its author.
+- Its description (via the body ).
+- Number of comments it has.
+
+You can retrieve the remaining information from:
+[http://jsonplaceholder.typicode.com/users](http://jsonplaceholder.typicode.com/users) [http://jsonplaceholder.typicode.com/comments](http://jsonplaceholder.typicode.com/comments)
 
 ## Build Setup
 
